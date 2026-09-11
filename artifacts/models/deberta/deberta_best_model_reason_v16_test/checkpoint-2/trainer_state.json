@@ -1,0 +1,56 @@
+{
+  "best_metric": 0.28676706552505493,
+  "best_model_checkpoint": "deberta_best_model_reason_v16_test/checkpoint-2",
+  "epoch": 1.0,
+  "eval_steps": 500,
+  "global_step": 2,
+  "is_hyper_param_search": false,
+  "is_local_process_zero": true,
+  "is_world_process_zero": true,
+  "log_history": [
+    {
+      "epoch": 0.5,
+      "grad_norm": 4.7598724365234375,
+      "learning_rate": 1e-05,
+      "loss": 0.3689,
+      "step": 1
+    },
+    {
+      "epoch": 1.0,
+      "grad_norm": 3.716151714324951,
+      "learning_rate": 0.0,
+      "loss": 0.2555,
+      "step": 2
+    },
+    {
+      "epoch": 1.0,
+      "eval_loss": 0.28676706552505493,
+      "eval_mse": 0.28676706552505493,
+      "eval_runtime": 0.1468,
+      "eval_samples_per_second": 6.812,
+      "eval_steps_per_second": 6.812,
+      "step": 2
+    }
+  ],
+  "logging_steps": 1,
+  "max_steps": 2,
+  "num_input_tokens_seen": 0,
+  "num_train_epochs": 1,
+  "save_steps": 500,
+  "stateful_callbacks": {
+    "TrainerControl": {
+      "args": {
+        "should_epoch_stop": false,
+        "should_evaluate": false,
+        "should_log": false,
+        "should_save": true,
+        "should_training_stop": true
+      },
+      "attributes": {}
+    }
+  },
+  "total_flos": 0.0,
+  "train_batch_size": 1,
+  "trial_name": null,
+  "trial_params": null
+}

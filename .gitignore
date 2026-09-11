@@ -1,0 +1,87 @@
+# ---------------- 仮想環境 ----------------
+.venv*/
+venv/
+env/
+.venv-alexa/
+.venv-bard/
+
+# ---------------- 環境変数・秘密情報 ----------------
+.env
+.env.*
+*.key
+*.pem
+
+# ---------------- キャッシュ類 ----------------
+.cache/
+.config/
+.bash_history
+.ipynb_checkpoints/
+
+# ---------------- Python 生成物 ----------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ---------------- OS / IDE ごみ ----------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ---------------- ログ・実験結果 ----------------
+logs/
+results/
+wandb/
+runs/
+outputs/
+checkpoints/
+
+# ---------------- データセット ----------------
+data/
+data_ChatRec/
+
+# ---------------- 学習済みモデル・重いファイル ----------------
+deberta_baseline2/
+deberta_best_model_baseline2/
+
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+*.pkl
+*.pickle
+
+# Excel / CSV などのデータファイルを公開しない場合
+*.xlsx
+*.xls
+*.csv
+*.tsv
+*.jsonl
+
+# ---------------- src/Tabidachi 配下の設定 ----------------
+# src/Tabidachi 配下は基本無視し、Python と Notebook だけ追跡
+/src/Tabidachi/**
+!/src/Tabidachi/
+!/src/Tabidachi/**/
+!/src/Tabidachi/**/*.py
+!/src/Tabidachi/**/*.ipynb
+
+# ---------------- src/ChatRec 配下の設定 ----------------
+# src/ChatRec 配下は基本無視し、Python と Notebook だけ追跡
+/src/ChatRec/**
+!/src/ChatRec/
+!/src/ChatRec/**/
+!/src/ChatRec/**/*.py
+!/src/ChatRec/**/*.ipynb
+
+# ---------------- Claude / ローカル設定 ----------------
+.claude/
+
+# ---------------- ユーティリティファイル（再現実験に不要） ----------------
+src/ChatRec/count_*.py
+src/Tabidachi/count_*.py
+src/Tabidachi/print_hyper-parameter.py
+
+# CSV作成スクリプトを追跡しない場合はコメントアウトを外す
+# src/Tabidachi/create_csv*.py
