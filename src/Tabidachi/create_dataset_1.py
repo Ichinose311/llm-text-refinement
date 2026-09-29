@@ -1,6 +1,5 @@
 import os
 import json
-from tqdm import tqdm
 
 # Set base directory for path resolution
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -48,27 +47,33 @@ def transform_data(data):
         "score": score
     }
 
-# ディレクトリ内のすべてのJSONファイルを処理
-input_dir = os.path.join(BASE_DIR, '../../data/Tabidachi/formatted_data')
-output_dir = os.path.join(BASE_DIR, '../../data/Tabidachi/datasets_1/')
-# 出力ディレクトリが存在しない場合は作成
-os.makedirs(output_dir, exist_ok=True)
+def main():
+    from tqdm import tqdm
 
-# すべてのJSONファイルを処理
-for filename in tqdm(os.listdir(input_dir)):
-    if filename.endswith('.json'):
-        input_file_path = os.path.join(input_dir, filename)
-        output_file_path = os.path.join(output_dir, filename)
+    # ディレクトリ内のすべてのJSONファイルを処理
+    input_dir = os.path.join(BASE_DIR, '../../data/Tabidachi/formatted_data')
+    output_dir = os.path.join(BASE_DIR, '../../data/Tabidachi/datasets_1/')
+    # 出力ディレクトリが存在しない場合は作成
+    os.makedirs(output_dir, exist_ok=True)
+
+    # すべてのJSONファイルを処理
+    for filename in tqdm(os.listdir(input_dir)):
+        if filename.endswith('.json'):
+            input_file_path = os.path.join(input_dir, filename)
+            output_file_path = os.path.join(output_dir, filename)
         
-        # JSONファイルを読み込む
-        with open(input_file_path, 'r', encoding='utf-8') as file:
-            datas = json.load(file)
+            # JSONファイルを読み込む
+            with open(input_file_path, 'r', encoding='utf-8') as file:
+                datas = json.load(file)
 
         
-        transformed_datas = [transform_data(data) for data in datas]
+            transformed_datas = [transform_data(data) for data in datas]
         
-        # 変換したデータをoutput_dirに同じファイル名で書き出す
-        with open(output_file_path, 'w', encoding='utf-8') as file:
-            json.dump(transformed_datas, file, ensure_ascii=False, indent=4)
+            # 変換したデータをoutput_dirに同じファイル名で書き出す
+            with open(output_file_path, 'w', encoding='utf-8') as file:
+                json.dump(transformed_datas, file, ensure_ascii=False, indent=4)
 
-print("処理が完了しました。")
+    print("処理が完了しました。")
+
+if __name__ == "__main__":
+    main()

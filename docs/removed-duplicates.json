@@ -1,0 +1,212 @@
+[
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/checkpoint-169/adapter_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/adapter_config.json",
+    "bytes": 1117,
+    "sha256": "4192bf1923613f7b9e330de1e590edb7ad4eda2ecfd86d2ac98686a374606a4f",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/checkpoint-169/special_tokens_map.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/special_tokens_map.json",
+    "bytes": 335,
+    "sha256": "849070cae53bd45439e64ce5b1ddd650a66081b1bd47895c5a58939a05055579",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/checkpoint-169/tokenizer.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/tokenizer.json",
+    "bytes": 17209920,
+    "sha256": "6b9e4e7fb171f92fd137b777cc2714bf87d11576700a1dcd7a399e7bbe39537b",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/checkpoint-169/tokenizer_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/tokenizer_config.json",
+    "bytes": 50534,
+    "sha256": "a800da9323f6bc65b8a87ae3d209f46a18eb09cf381b6c416551d30372cf1ce6",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/checkpoint-167/adapter_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/adapter_config.json",
+    "bytes": 1117,
+    "sha256": "4189bc71ef8b96176eb75313087bd91ba4397935b79cfab1a05a9c9f52332abb",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/checkpoint-167/special_tokens_map.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/special_tokens_map.json",
+    "bytes": 335,
+    "sha256": "849070cae53bd45439e64ce5b1ddd650a66081b1bd47895c5a58939a05055579",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/checkpoint-167/tokenizer.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/tokenizer.json",
+    "bytes": 17209920,
+    "sha256": "6b9e4e7fb171f92fd137b777cc2714bf87d11576700a1dcd7a399e7bbe39537b",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/checkpoint-167/tokenizer_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/tokenizer_config.json",
+    "bytes": 50534,
+    "sha256": "a800da9323f6bc65b8a87ae3d209f46a18eb09cf381b6c416551d30372cf1ce6",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/checkpoint-25/adapter_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/adapter_config.json",
+    "bytes": 1117,
+    "sha256": "5dff413876a78e0e7a8cc5b54d83a77fef91569816107a0ad83b8db33a12df9a",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/checkpoint-25/special_tokens_map.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/special_tokens_map.json",
+    "bytes": 335,
+    "sha256": "849070cae53bd45439e64ce5b1ddd650a66081b1bd47895c5a58939a05055579",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/checkpoint-25/tokenizer.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/tokenizer.json",
+    "bytes": 17209920,
+    "sha256": "6b9e4e7fb171f92fd137b777cc2714bf87d11576700a1dcd7a399e7bbe39537b",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/checkpoint-25/tokenizer_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/tokenizer_config.json",
+    "bytes": 50534,
+    "sha256": "a800da9323f6bc65b8a87ae3d209f46a18eb09cf381b6c416551d30372cf1ce6",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/checkpoint-3/adapter_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/adapter_config.json",
+    "bytes": 1117,
+    "sha256": "1e45199b8fdbedf416260361b00b122ef758eb948cf972683b6df803664674d4",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/checkpoint-3/special_tokens_map.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/special_tokens_map.json",
+    "bytes": 335,
+    "sha256": "849070cae53bd45439e64ce5b1ddd650a66081b1bd47895c5a58939a05055579",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/checkpoint-3/tokenizer.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/tokenizer.json",
+    "bytes": 17209920,
+    "sha256": "6b9e4e7fb171f92fd137b777cc2714bf87d11576700a1dcd7a399e7bbe39537b",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/checkpoint-3/tokenizer_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/tokenizer_config.json",
+    "bytes": 50534,
+    "sha256": "a800da9323f6bc65b8a87ae3d209f46a18eb09cf381b6c416551d30372cf1ce6",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/checkpoint-29452/tokenizer.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/tokenizer.json",
+    "bytes": 6410522,
+    "sha256": "945d40205e1812c0846b0b5f178b0c4676ffceccc6ea28525c5231f352204319",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/checkpoint-29452/tokenizer_config.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/tokenizer_config.json",
+    "bytes": 613,
+    "sha256": "9365f747700aa9aed95acdb679e7cb8b4fdc6bdb7f6faab6e5054ff01673061e",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/checkpoint-44178/tokenizer.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/tokenizer.json",
+    "bytes": 6410522,
+    "sha256": "945d40205e1812c0846b0b5f178b0c4676ffceccc6ea28525c5231f352204319",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/checkpoint-44178/tokenizer_config.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/tokenizer_config.json",
+    "bytes": 613,
+    "sha256": "9365f747700aa9aed95acdb679e7cb8b4fdc6bdb7f6faab6e5054ff01673061e",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24_test/checkpoint-40/tokenizer.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24_test/tokenizer.json",
+    "bytes": 6410522,
+    "sha256": "945d40205e1812c0846b0b5f178b0c4676ffceccc6ea28525c5231f352204319",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24_test/checkpoint-40/tokenizer_config.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24_test/tokenizer_config.json",
+    "bytes": 613,
+    "sha256": "9365f747700aa9aed95acdb679e7cb8b4fdc6bdb7f6faab6e5054ff01673061e",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_3input_v16_existing_nonold24_test/checkpoint-50/tokenizer.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_3input_v16_existing_nonold24_test/tokenizer.json",
+    "bytes": 6410522,
+    "sha256": "945d40205e1812c0846b0b5f178b0c4676ffceccc6ea28525c5231f352204319",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_3input_v16_existing_nonold24_test/checkpoint-50/tokenizer_config.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_3input_v16_existing_nonold24_test/tokenizer_config.json",
+    "bytes": 613,
+    "sha256": "9365f747700aa9aed95acdb679e7cb8b4fdc6bdb7f6faab6e5054ff01673061e",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/checkpoint-14626/tokenizer.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/tokenizer.json",
+    "bytes": 6410522,
+    "sha256": "945d40205e1812c0846b0b5f178b0c4676ffceccc6ea28525c5231f352204319",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/checkpoint-14626/tokenizer_config.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/tokenizer_config.json",
+    "bytes": 613,
+    "sha256": "9365f747700aa9aed95acdb679e7cb8b4fdc6bdb7f6faab6e5054ff01673061e",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/checkpoint-43878/tokenizer.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/tokenizer.json",
+    "bytes": 6410522,
+    "sha256": "945d40205e1812c0846b0b5f178b0c4676ffceccc6ea28525c5231f352204319",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/checkpoint-43878/tokenizer_config.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/tokenizer_config.json",
+    "bytes": 613,
+    "sha256": "9365f747700aa9aed95acdb679e7cb8b4fdc6bdb7f6faab6e5054ff01673061e",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24_test/checkpoint-50/tokenizer.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24_test/tokenizer.json",
+    "bytes": 6410522,
+    "sha256": "945d40205e1812c0846b0b5f178b0c4676ffceccc6ea28525c5231f352204319",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24_test/checkpoint-50/tokenizer_config.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24_test/tokenizer_config.json",
+    "bytes": 613,
+    "sha256": "9365f747700aa9aed95acdb679e7cb8b4fdc6bdb7f6faab6e5054ff01673061e",
+    "hash_basis": "Git blob (LF text); normalize CRLF checkout to LF before verifying"
+  }
+]

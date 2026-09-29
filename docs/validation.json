@@ -1,0 +1,49 @@
+{
+  "python": "3.12.14",
+  "platform": "win32",
+  "python_3_10_syntax_files": 89,
+  "documentation_commands_checked": 32,
+  "gitignore_cases": 20,
+  "dependencies": {
+    "legacy": {
+      "check": "pip dry-run --ignore-installed --only-binary=:all:",
+      "packages_resolved": 92,
+      "requested_versions": {
+        "torch": "2.4.1",
+        "transformers": "4.46.2",
+        "trl": "0.12.1",
+        "accelerate": "1.0.1",
+        "numpy": "1.26.4",
+        "datasets": "3.1.0",
+        "peft": "0.13.2",
+        "scipy": "1.14.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.5.2",
+        "optuna": "4.1.0",
+        "safetensors": "0.4.5",
+        "sentencepiece": "0.2.0",
+        "protobuf": "4.25.5",
+        "tqdm": "4.67.0",
+        "wandb": "0.19.6",
+        "tensorboard": "2.12.3"
+      },
+      "profile_sha256": "4ef8f2bceea58ace5daf32c2184b7b8e16ef90e84a35b711600a21b76a3c5b64",
+      "installed": false,
+      "gpu_execution": false
+    },
+    "modernbert": {
+      "check": "pip dry-run --ignore-installed --only-binary=:all:",
+      "packages_resolved": 37,
+      "requested_versions": {
+        "transformers": "5.13.0",
+        "numpy": "1.26.4",
+        "torch": "2.14.0",
+        "accelerate": "1.15.0",
+        "safetensors": "0.8.0"
+      },
+      "profile_sha256": "f0a74a9ff46fd0f91db749a1db7f325fab28aae064560c0434485956b93d7cf7",
+      "installed": false,
+      "gpu_execution": false
+    }
+  }
+}
