@@ -1,150 +1,132 @@
-# Refining Text Generation for Realistic Conversational Recommendation via Direct Preference Optimization
+# Reason-Aware Conversational Recommendation with ModernBERT
 
 [日本語](README_JP.md) | English
 
-This repository contains the research implementation of a conversational recommender system (CRS) that refines two intermediate texts—dialogue summaries and item-recommendation information—using Direct Preference Optimization (DPO).
+An ongoing NLP research project that adds **reasons for and against recommending an item** to SumRec, then ranks candidates with Japanese ModernBERT. The current focus is improving these reasons; outperforming SumRec / SumRec + DPO and extending the system to response generation are research goals, not completed results.
 
-![Overview of the proposed method](images/proposal_flow.png)
+```mermaid
+flowchart LR
+    D[Dialogue] --> S[User summary]
+    I[Candidate information] --> R[Item recommendation text]
+    S --> V[Personalized reasons: v16]
+    I --> V
+    S --> M[DeBERTa or ModernBERT scorer]
+    I --> M
+    R --> M
+    V -. v16 extension .-> M
+    M --> P[Candidate scores]
+    P --> K[Descending candidate ranking]
+```
 
-[View the high-resolution diagram](images/proposal_flow.pdf)
+The dashed input is the v16 extension and the current research focus. The original pipeline generates recommendation text from candidate information alone; v16 reasons also use the user summary. The diagram describes the code paths, not a claim that every variant has been validated.
 
-## Motivation
+**Start here:** [run the CPU example](#quick-start) · [method and code map](docs/method.md) · [research reproduction](docs/reproduction.md) · [audit and remaining work](docs/repository-audit.md)
 
-Conversational recommenders can make premature recommendations from short exchanges or fail to combine preferences that are implied across a longer dialogue. This project extends the SumRec pipeline by optimizing the generated dialogue summary and item-recommendation information before ranking candidate items.
+## Overview
 
-The implementation covers the complete experimental workflow:
+A conversational recommender must turn a dialogue into useful preferences and compare candidate items. A fluent summary can omit a preference; a persuasive recommendation can introduce unsupported details. This project investigates the intermediate text itself: generate alternatives, score them, form preference pairs, and train generators with Direct Preference Optimization (DPO).
 
-1. preprocess conversational recommendation datasets;
-2. construct supervised and preference datasets;
-3. train a DeBERTa or ModernBERT score predictor;
-4. train text-generation models with DPO;
-5. generate recommendations; and
-6. evaluate ranking and text quality.
+The current proposal explicitly connects user preferences to candidate features through recommendation and non-recommendation reasons, supplied as a fourth scorer input. The research question is whether these grounds improve **held-out candidate ranking**, not only their fluency. The repository contains both the original summary/recommendation DPO experiments (Tabidachi and ChatRec) and a Tabidachi v16 line that generates reasons for and against a candidate.
 
-## Method
+## Method and code entry points
 
-The pipeline uses two training stages.
+| Variant in this repository | Scorer input / optimization | Entry point |
+|---|---|---|
+| `baseline2` | User summary + candidate information | [baseline2](src/Tabidachi/create_recommend_data_baseline2.py) |
+| `baseline1` (SumRec-style) | Adds generated item recommendation text; no DPO generator | [baseline1](src/Tabidachi/create_recommend_data_baseline1.py) |
+| `proposal` | Summary and recommendation generators trained with DPO; DeBERTa ranking | [proposal](src/Tabidachi/create_recommend_data_proposal.py) |
+| `ablation1` / `ablation2` | Summary-only / recommendation-only DPO | [ablation1](src/Tabidachi/create_recommend_data_ablation1.py), [ablation2](src/Tabidachi/create_recommend_data_ablation2.py) |
+| v16 four-input | Summary, candidate information, item text, personalized reasons; regression or pairwise ranking | [regression](src/Tabidachi/train_modernbert_4input_v16.py), [pairwise](src/Tabidachi/train_modernbert_pairwise_4input_v16.py) |
+| v16 reason DPO | Score-guided reason preference pairs, LoRA adapter | [preference construction](src/Tabidachi/create_dataset_4_reason_v16.py), [training](src/Tabidachi/dpo_recommendation_llm_reason_v16.py) |
 
-- **Score prediction:** a DeBERTa/ModernBERT model learns to score a candidate item from the dialogue summary, recommendation information, and candidate metadata.
-- **Preference optimization:** the score predictor is used to construct preference pairs. DPO then improves the dialogue-summary generator and recommendation-information generator.
-
-The main experiments use:
-
-- **Generator:** [Llama-3.1-Swallow-8B-v0.1](https://huggingface.co/tokyotech-llm/Llama-3.1-Swallow-8B-v0.1)
-- **Score predictor:** [DeBERTa-v3-japanese-large](https://huggingface.co/globis-university/deberta-v3-japanese-large) and [llm-jp-modernbert-base](https://huggingface.co/llm-jp/llm-jp-modernbert-base)
-- **Optimization:** Direct Preference Optimization with Optuna-based hyperparameter search
-- **Ranking metrics:** HR@k and MRR@k
-- **Text analysis:** length, Distinct-1/2, BLEU, and ROUGE
-
-## Experimental findings
-
-The experiments recorded in the original project showed the following trends.
-
-- On the Tabidachi corpus, the proposed method improved HR@1/3/5 and MRR@1/3/5 over the evaluated baselines.
-- On ChatRec, the proposed method achieved the strongest MRR results among the evaluated methods.
-- The ablation study indicated that DPO training of the dialogue-summary generator made a particularly important contribution.
-
-The repository includes evaluation programs and selected training metadata. Dataset files and trained model weights are excluded.
+These are implementation labels, not verified reproductions of every baseline in the original SumRec paper. See [method details and attribution](docs/method.md) before comparing variants.
 
 ## Repository structure
 
 ```text
-.
-├── src/
-│   ├── Tabidachi/              # Tabidachi preprocessing, training, generation, and evaluation
-│   └── ChatRec/                # ChatRec preprocessing, training, generation, and evaluation
-├── artifacts/
-│   ├── models/
-│   │   ├── deberta/            # Saved tokenizer/configuration and trainer-state metadata
-│   │   └── modernbert/         # Saved tokenizer/configuration and trainer-state metadata
-│   ├── dpo/recommendation/     # DPO adapter configuration and trainer-state metadata
-│   └── generated_text/         # Intermediate text-generation examples
-├── images/                     # Method diagram
-├── eval_reason_overlap.py      # Overlap analysis for generated reasons
-├── eval_reason_quality.py      # Quality analysis for generated reasons
-├── metrics_sentence.py         # Text-quality metrics
-└── requirements.txt            # Frozen experimental environment
+src/Tabidachi/       Corpus preprocessing, legacy DPO, v16 reasons, ranking
+src/ChatRec/         ChatRec preprocessing, legacy DPO and evaluation
+docs/               Method, execution order, audit and file inventories
+examples/           Synthetic public example; no corpus excerpts
+results/            Reviewed result documentation and synthetic expected metrics
+requirements/       Separate environment profiles and original freeze
+tests/              CPU regression tests for metrics, CLI and preprocessing
+scripts/            Repository checks
+data/               Placement guide; actual corpus subdirectories ignored
+artifacts/          Retained experiment metadata, not runnable checkpoints
+images/             Original research diagram (PNG/PDF)
 ```
 
-The files under `artifacts/` are archived experimental outputs. They are kept separate from the implementation under `src/`; no trained model weights are distributed in this repository. Selected tokenizer and configuration files are retained as experiment metadata.
+Source paths and prompt versions are retained so ongoing jobs can continue using the existing layout. [Source inventory](docs/source-inventory.md) records imports and path literals; [artifact inventory](docs/artifact-inventory.csv) records each original artifact's disposition.
 
-## Datasets
+## Quick start
 
-The datasets are not included. Obtain them from their original providers and follow their terms of use.
-
-### Tabidachi corpus
-
-- Provider: [NII Informatics Research Data Repository](https://www.nii.ac.jp/dsc/idr/rdata/Tabidachi/)
-- Content: travel-agent recommendation dialogues
-- Expected location: `data/Tabidachi/annotation_data/`
-
-```text
-data/Tabidachi/annotation_data/
-├── annotations/
-├── spot_info.json
-└── タグ一覧.docx
-```
-
-### ChatRec
-
-- Source: [Ryutaro-A/SumRec](https://github.com/Ryutaro-A/SumRec)
-- Content: multi-category recommendation dialogues used for comparison
-- Expected location: `data/ChatRec/chat_and_rec/`
-
-## Environment
-
-The experiments used Python 3.10.12, PyTorch 2.4.1, Transformers 4.46.2, TRL 0.12.1, Optuna 4.1.0, and four NVIDIA A100 80 GB GPUs. A smaller environment may run preprocessing and evaluation, but reproducing model training requires substantial GPU memory and time.
+Python **3.10+**. This example requires no GPU, dataset, model downloads or third-party packages.
 
 ```bash
+git clone https://github.com/Ichinose311/llm-text-refinement.git
+cd llm-text-refinement
 python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+# Linux/macOS: source .venv/bin/activate
+# Windows PowerShell: .\.venv\Scripts\Activate.ps1
+python src/Tabidachi/evaluate_precomputed_ranking.py --input-dir examples/ranking --ks 1 3 5
+python -m unittest discover -s tests -v
+python scripts/check_repository.py
 ```
 
-Weights & Biases is used by some training scripts. Authenticate in your local environment when running those scripts; credentials are not stored in this repository.
+The [synthetic example](examples/README.md) has two groups and six candidates. Its manually assigned scores test evaluation only; it performs no LLM inference.
 
-## Reproduction workflow
+| Synthetic smoke test | @1 | @3 | @5 |
+|---|---:|---:|---:|
+| HR | 0.50 | 1.00 | 1.00 |
+| MRR | 0.50 | 0.75 | 0.75 |
 
-Run commands from the corresponding corpus directory because several scripts use paths relative to that location.
+The [full expected JSON](results/example-metrics.json) also includes Recall and NDCG. These numbers are **not research results**.
 
-### Tabidachi
+## Setup and datasets for research
+
+The original README reported Python 3.10.12 and four A100 80 GB GPUs; that hardware claim has not been independently verified. GPU training is not covered by the CPU smoke test.
+
+Use separate environments for the legacy DeBERTa/DPO pipeline and ModernBERT. The old freeze mixes incompatible packages, and its Transformers 4.46.2 pin predates ModernBERT. [Environment profiles](requirements/README.md) explain the changes and verification limits.
 
 ```bash
-cd src/Tabidachi
-
-python data_preprocessing.py
-python create_dataset_1.py
-python create_dataset_2.py
-python create_dataset_3.py
-python create_dataset_4.py
-
-python train_deberta.py --method 'proposal&baseline1'
-python dpo_summary_llm.py
-python dpo_recommendation_llm.py
-python create_recommend_data_proposal.py
-python evaluate_from_recommend_data.py --method proposal
+# In a dedicated legacy research environment:
+python -m pip install -r requirements.txt
+# Or, in a separate ModernBERT environment:
+python -m pip install -r requirements/modernbert.txt
 ```
 
-### ChatRec
+Tabidachi is available through the [NII application process](https://www.nii.ac.jp/dsc/idr/rdata/Tabidachi/). The [SumRec repository](https://github.com/Ryutaro-A/SumRec) publishes ChatRec under `data/chat_and_rec/`; check the provider's usage conditions before use. Put local corpus files in the paths described in [data/README.md](data/README.md). No raw dataset or trained weights are bundled. Some retained generated-text artifacts may contain corpus-derived material and still require a redistribution review.
 
-```bash
-cd src/ChatRec
+## Usage
 
-python data_preprocessing.py
-python create_dataset_1.py
-python create_dataset_2.py
-python create_dataset_3.py
-python create_dataset_4.py
+The [reproduction guide](docs/reproduction.md) gives actual preprocessing, training, inference and evaluation commands, with input/output dependencies. It separates CPU checks, GPU commands requiring local data, and legacy scripts that need experiment-specific review.
 
-python train_deberta.py --method 'proposal&baseline1'
-python dpo_summary_llm.py
-python dpo_recommendation_llm.py
-python create_recommend_data_proposal.py
-python evaluate_from_recommend_data.py --method proposal
-```
+The dependency order is **preprocess → build scorer data → train scorer → construct preference pairs → DPO → generate candidate scores → evaluate**. The original README incorrectly placed preference construction before scorer training. Legacy hard-coded paths, split settings and five-run expectations mean it is not yet a one-command reproduction.
 
-Additional scripts in each corpus directory cover alternative model architectures, ablation studies, prompt versions, and precomputed-ranking evaluation.
+## Results and current status
 
-## Scope and usage
+No traceable held-out benchmark table is included. Training losses in `trainer_state.json` do not establish HR/MRR improvements. [Results and metric definitions](results/README.md) explain what can be checked and what must be supplied before making performance claims.
 
-This repository publishes research code and selected metadata for technical review. It does not redistribute the Tabidachi or ChatRec datasets or trained weights. No open-source license is currently granted for this repository. Retained tokenizer/configuration files and use of pretrained models remain subject to the corresponding licenses: CC BY-SA 4.0 for DeBERTa-v3-japanese-large, Apache-2.0 for llm-jp-modernbert-base, and the Meta Llama 3.1 Community License for Llama-3.1-Swallow.
+- **Implemented:** corpus preprocessing, score prediction, preference construction, DPO scripts, reason generation, regression/pairwise variants and ranking evaluation.
+- **Verified in this cleanup:** synthetic CPU evaluation, 13 regression tests, Python syntax, local documentation links and retained duplicate hashes.
+- **In progress:** improving recommendation/non-recommendation reasons for the four-input ModernBERT pipeline.
+- **Unresolved:** original environment lock, split provenance, real-data GPU reproduction and evidence-backed benchmark reporting.
+- **Planned:** compare with SumRec and SumRec + DPO, extend to response generation (not yet implemented as a verified pipeline), review corpus-derived artifacts and publish approved aggregate results with seeds and uncertainty.
+
+An evaluation bug was corrected: the ModernBERT evaluator reported DCG as NDCG and Hit Rate as Recall. Re-evaluate saved scores before comparing with old numbers. Model training and generated scores were not changed by that fix.
+
+## Implementation and attribution
+
+The maintainer identifies the inherited SumRec structure as generating a dialogue summary and item recommendation text, then scoring the summary, item information and recommendation text together. Their own implemented contribution is generating recommendation and non-recommendation reasons from the summary and item features, and adding these grounds as a fourth input to ModernBERT. Reason quality is still being improved. DPO, pretrained models and the original SumRec design are credited to prior work; other scripts are not claimed as sole-author contributions. See [the contribution map](docs/method.md).
+
+## References and scope
+
+- [SumRec: official code and ChatRec](https://github.com/Ryutaro-A/SumRec)
+- [DPO: Rafailov et al., 2023](https://arxiv.org/abs/2305.18290)
+- [Japanese ModernBERT model and paper](https://huggingface.co/llm-jp/llm-jp-modernbert-base)
+- [Swallow generator](https://huggingface.co/tokyotech-llm/Llama-3.1-Swallow-8B-v0.1)
+- [Japanese DeBERTa](https://huggingface.co/globis-university/deberta-v3-japanese-large)
+- [Tabidachi provider](https://www.nii.ac.jp/dsc/idr/rdata/Tabidachi/)
+
+This is ongoing research code for technical review. The repository has no project-wide open-source license grant. Model, dataset and third-party artifact terms are separate; consult their providers. No new license or permission is implied by this cleanup.
