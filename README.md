@@ -5,20 +5,20 @@
 An ongoing NLP research project that adds **reasons for and against recommending an item** to SumRec, then ranks candidates with Japanese ModernBERT. The current focus is improving these reasons; outperforming SumRec / SumRec + DPO and extending the system to response generation are research goals, not completed results.
 
 ```mermaid
-flowchart LR
+flowchart TD
     D[Dialogue] --> S[User summary]
     I[Candidate information] --> R[Item recommendation text]
     S --> V[Personalized reasons: v16]
     I --> V
-    S --> M[DeBERTa or ModernBERT scorer]
+    S --> M[ModernBERT: four-input scorer]
     I --> M
     R --> M
-    V -. v16 extension .-> M
+    V --> M
     M --> P[Candidate scores]
     P --> K[Descending candidate ranking]
 ```
 
-The dashed input is the v16 extension and the current research focus. The original pipeline generates recommendation text from candidate information alone; v16 reasons also use the user summary. The diagram describes the code paths, not a claim that every variant has been validated.
+The diagram shows the active four-input v16 pipeline. Item recommendation text uses candidate information; personalized reasons also use the user summary. Reason generation is still being improved. The three-input SumRec-style and DeBERTa/DPO comparison paths remain available below.
 
 **Start here:** [run the CPU example](#quick-start) · [method and code map](docs/method.md) · [research reproduction](docs/reproduction.md) · [audit and remaining work](docs/repository-audit.md)
 
@@ -32,11 +32,11 @@ The current proposal explicitly connects user preferences to candidate features 
 
 | Variant in this repository | Scorer input / optimization | Entry point |
 |---|---|---|
+| v16 four-input | Summary, candidate information, item text, personalized reasons; regression or pairwise ranking | [regression](src/Tabidachi/train_modernbert_4input_v16.py), [pairwise](src/Tabidachi/train_modernbert_pairwise_4input_v16.py) |
 | `baseline2` | User summary + candidate information | [baseline2](src/Tabidachi/create_recommend_data_baseline2.py) |
 | `baseline1` (SumRec-style) | Adds generated item recommendation text; no DPO generator | [baseline1](src/Tabidachi/create_recommend_data_baseline1.py) |
 | `proposal` | Summary and recommendation generators trained with DPO; DeBERTa ranking | [proposal](src/Tabidachi/create_recommend_data_proposal.py) |
 | `ablation1` / `ablation2` | Summary-only / recommendation-only DPO | [ablation1](src/Tabidachi/create_recommend_data_ablation1.py), [ablation2](src/Tabidachi/create_recommend_data_ablation2.py) |
-| v16 four-input | Summary, candidate information, item text, personalized reasons; regression or pairwise ranking | [regression](src/Tabidachi/train_modernbert_4input_v16.py), [pairwise](src/Tabidachi/train_modernbert_pairwise_4input_v16.py) |
 | v16 reason DPO | Score-guided reason preference pairs, LoRA adapter | [preference construction](src/Tabidachi/create_dataset_4_reason_v16.py), [training](src/Tabidachi/dpo_recommendation_llm_reason_v16.py) |
 
 These are implementation labels, not verified reproductions of every baseline in the original SumRec paper. See [method details and attribution](docs/method.md) before comparing variants.
@@ -130,3 +130,4 @@ The maintainer identifies the inherited SumRec structure as generating a dialogu
 - [Tabidachi provider](https://www.nii.ac.jp/dsc/idr/rdata/Tabidachi/)
 
 This is ongoing research code for technical review. The repository has no project-wide open-source license grant. Model, dataset and third-party artifact terms are separate; consult their providers. No new license or permission is implied by this cleanup.
+

@@ -5,20 +5,20 @@
 SumRecの入力に、ユーザーの好みと候補の特徴を結び付ける「推薦理由・非推薦理由」を追加し、ModernBERTで候補を順位付けする、継続中のNLP研究です。現在は推薦根拠の生成を改良しており、SumRec／SumRec＋DPOを上回る推薦精度と、未着手だった応答生成への拡張を目標としています。
 
 ```mermaid
-flowchart LR
-    D[Dialogue] --> S[User summary]
-    I[Candidate information] --> R[Item recommendation text]
-    S --> V[Personalized reasons: v16]
+flowchart TD
+    D[対話] --> S[対話要約文]
+    I[アイテム情報] --> R[アイテム推薦文]
+    S --> V[推薦理由・非推薦理由]
     I --> V
-    S --> M[DeBERTa or ModernBERT scorer]
+    S --> M[ModernBERT: 4入力スコア予測]
     I --> M
     R --> M
-    V -. v16 extension .-> M
-    M --> P[Candidate scores]
-    P --> K[Descending candidate ranking]
+    V --> M
+    M --> P[候補ごとの推薦スコア]
+    P --> K[候補ランキング]
 ```
 
-点線はv16で追加する入力で、現在の研究の中心です。従来系統の推薦文は候補情報から生成し、v16の個別理由はユーザー要約も参照します。図はコード上の処理を示しており、全方式の実験完了を意味しません。
+図は現在の研究の中心であるv16・4入力の処理です。推薦文は候補情報から生成し、個別の推薦理由・非推薦理由はユーザー要約も参照します。理由生成は改良中です。比較用の3入力SumRec型・DeBERTa/DPO系統も保持しています。
 
 **読む順番：** [手法とコードの対応](docs/method.md) → [再現手順](docs/reproduction.md) → [結果・評価定義](results/README.md)。すぐ動かす場合は下のCPU例から始められます。
 
@@ -32,11 +32,11 @@ flowchart LR
 
 | コード上の名前 | 入力・工夫 | コードの入口 |
 |---|---|---|
+| v16・4入力 | 要約・候補情報・推薦文・個別理由を使用。回帰とペアワイズ学習を比較 | [回帰](src/Tabidachi/train_modernbert_4input_v16.py)、[ペアワイズ](src/Tabidachi/train_modernbert_pairwise_4input_v16.py) |
 | `baseline2` | 対話要約＋候補情報で予測 | [baseline2](src/Tabidachi/create_recommend_data_baseline2.py) |
 | `baseline1` | SumRec型。生成した推薦文を入力に追加 | [baseline1](src/Tabidachi/create_recommend_data_baseline1.py) |
 | `proposal` | 要約生成器と推薦文生成器をDPOで学習 | [proposal](src/Tabidachi/create_recommend_data_proposal.py) |
 | `ablation1` / `ablation2` | 要約のみ／推薦文のみをDPOで学習 | [ablation1](src/Tabidachi/create_recommend_data_ablation1.py)、[ablation2](src/Tabidachi/create_recommend_data_ablation2.py) |
-| v16・4入力 | 要約・候補情報・推薦文・個別理由を使用。回帰とペアワイズ学習を比較 | [回帰](src/Tabidachi/train_modernbert_4input_v16.py)、[ペアワイズ](src/Tabidachi/train_modernbert_pairwise_4input_v16.py) |
 | v16・理由DPO | 理由の選好ペアからLoRA adapterを学習 | [選好構築](src/Tabidachi/create_dataset_4_reason_v16.py)、[学習](src/Tabidachi/dpo_recommendation_llm_reason_v16.py) |
 
 これはリポジトリ内の実装名の整理です。SumRec論文と同一条件の再現や、提案手法の優越性を主張するものではありません。従来系統とv16の違いは[手法詳細](docs/method.md)にまとめています。
@@ -138,3 +138,4 @@ ModernBERT評価にあった「未正規化DCGをNDCGと表示」「HRをRecall�
 - [Tabidachi提供元](https://www.nii.ac.jp/dsc/idr/rdata/Tabidachi/)
 
 本リポジトリ独自のオープンソースライセンスは現時点では付与されていません。データ・事前学習モデル・第三者由来のファイルはそれぞれの提供元の条件を確認してください。整理作業によって新たな利用許諾を付与するものではありません。
+
