@@ -1,12 +1,9 @@
 import argparse
 import glob
 import json
-import math
 import os
-from collections import defaultdict
+from ranking_metrics import ranking_metrics
 
-import torch
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 
 def build_text(x):
@@ -30,43 +27,6 @@ def load_rows(input_dir):
     return rows
 
 
-def ranking_metrics(rows, ks):
-    groups = defaultdict(list)
-    for x in rows:
-        groups[(x["source_file"], x["data_id"])].append(x)
-
-    out = {}
-    for k in ks:
-        hits = []
-        mrrs = []
-        ndcgs = []
-
-        for items in groups.values():
-            ranked = sorted(items, key=lambda x: float(x["predicted_score"]), reverse=True)
-            topk = ranked[:k]
-            labels = [int(x["score"]) for x in topk]
-
-            hits.append(1.0 if any(v > 0 for v in labels) else 0.0)
-
-            rr = 0.0
-            for i, v in enumerate(labels, start=1):
-                if v > 0:
-                    rr = 1.0 / i
-                    break
-            mrrs.append(rr)
-
-            dcg = 0.0
-            for i, v in enumerate(labels, start=1):
-                if v > 0:
-                    dcg += 1.0 / math.log2(i + 1)
-            ndcgs.append(dcg)
-
-        out[f"Recall@{k}"] = sum(hits) / len(hits)
-        out[f"MRR@{k}"] = sum(mrrs) / len(mrrs)
-        out[f"NDCG@{k}"] = sum(ndcgs) / len(ndcgs)
-
-    return out, len(groups)
-
 
 def main():
     parser = argparse.ArgumentParser()
@@ -77,6 +37,9 @@ def main():
     parser.add_argument("--max-length", type=int, default=8192)
     parser.add_argument("--save-scored", default=None)
     args = parser.parse_args()
+
+    import torch
+    from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
     rows = load_rows(args.input_dir)
     print("loaded rows:", len(rows))
@@ -120,7 +83,7 @@ def main():
         print(f"{k}: {metrics[k]:.6f}")
 
     if args.save_scored:
-        os.makedirs(os.path.dirname(args.save_scored), exist_ok=True)
+        os.makedirs(os.path.dirname(args.save_scored) or ".", exist_ok=True)
         with open(args.save_scored, "w", encoding="utf-8") as f:
             json.dump(scored, f, ensure_ascii=False, indent=2)
         print("\nsaved scored rows to:", args.save_scored)

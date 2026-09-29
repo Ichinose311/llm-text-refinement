@@ -1,0 +1,8 @@
+[
+  {"source_file": "synthetic_a", "data_id": 0, "candidate_index": 0, "candidate_name": "Quiet indoor museum", "score": 1, "predicted_score": 0.9},
+  {"source_file": "synthetic_a", "data_id": 0, "candidate_index": 1, "candidate_name": "Outdoor park", "score": 0, "predicted_score": 0.6},
+  {"source_file": "synthetic_a", "data_id": 0, "candidate_index": 2, "candidate_name": "Indoor gallery", "score": 1, "predicted_score": 0.3},
+  {"source_file": "synthetic_b", "data_id": 0, "candidate_index": 0, "candidate_name": "Large shopping mall", "score": 0, "predicted_score": 0.8},
+  {"source_file": "synthetic_b", "data_id": 0, "candidate_index": 1, "candidate_name": "Quiet garden", "score": 1, "predicted_score": 0.7},
+  {"source_file": "synthetic_b", "data_id": 0, "candidate_index": 2, "candidate_name": "Busy theme park", "score": 0, "predicted_score": 0.1}
+]

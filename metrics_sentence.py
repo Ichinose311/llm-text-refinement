@@ -15,8 +15,6 @@ MeCab(=fugashi) 形態素で
 必要なら `unidic` などに差し替えてください。
 """
 
-import sys
-import subprocess
 import math, collections
 import numpy as np
 import pandas as pd
@@ -28,14 +26,11 @@ from rouge_score import rouge_scorer
 try:
     from fugashi import Tagger
     tagger = Tagger()                       # デフォルト辞書
-except Exception as e:
-    print("⚠  Tagger() 初期化に失敗しました:", e)
-    print("   → unidic-lite をインストールして再試行します …")
-    subprocess.check_call(
-        [sys.executable, "-m", "pip", "install", "unidic-lite"]
-    )
-    from fugashi import Tagger
-    tagger = Tagger()
+except (ImportError, RuntimeError) as exc:
+    raise RuntimeError(
+        "Install text-analysis dependencies first: "
+        "python -m pip install -r requirements/text-analysis.txt"
+    ) from exc
 print("✓ MeCab tokenizer ready\n")
 
 def tokenize(text: str):

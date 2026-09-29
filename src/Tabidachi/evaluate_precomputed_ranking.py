@@ -1,86 +1,59 @@
+"""Evaluate saved candidate scores without GPUs, weights or dependencies."""
+
 import argparse
-import glob
 import json
-import math
-import os
-from collections import defaultdict
-from typing import Any, Dict, List
+from pathlib import Path
 
-import numpy as np
+from ranking_metrics import dcg, metrics_for_group, ranking_metrics
 
 
-def load_rows(input_dir: str) -> List[Dict[str, Any]]:
+def load_rows(input_dir):
+    directory = Path(input_dir)
+    if not directory.is_dir():
+        raise ValueError(f"Input directory does not exist: {directory}")
     rows = []
-    for path in sorted(glob.glob(os.path.join(input_dir, "*.json"))):
-        with open(path, encoding="utf-8") as f:
-            rows.extend(json.load(f))
+    for path in sorted(directory.glob("*.json")):
+        with path.open(encoding="utf-8") as handle:
+            data = json.load(handle)
+        if not isinstance(data, list):
+            raise ValueError(f"Expected a JSON list of candidate rows: {path}")
+        rows.extend(data)
     return rows
 
 
-def dcg(labels: List[int], k: int) -> float:
-    value = 0.0
-    for i, rel in enumerate(labels[:k]):
-        value += rel / math.log2(i + 2)
-    return value
+def save_json(path, value):
+    destination = Path(path)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def metrics_for_group(labels: List[int], ks: List[int]) -> Dict[str, float]:
-    result = {}
-    positives = sum(1 for x in labels if int(x) > 0)
-
-    for k in ks:
-        topk = labels[:k]
-        hit_count = sum(1 for x in topk if int(x) > 0)
-
-        result[f"Recall@{k}"] = hit_count / positives if positives > 0 else 0.0
-
-        ideal = sorted(labels, reverse=True)
-        ideal_dcg = dcg(ideal, k)
-        result[f"NDCG@{k}"] = dcg(labels, k) / ideal_dcg if ideal_dcg > 0 else 0.0
-
-        mrr = 0.0
-        for rank, rel in enumerate(topk, start=1):
-            if int(rel) > 0:
-                mrr = 1.0 / rank
-                break
-        result[f"MRR@{k}"] = mrr
-
-    return result
-
-
-def main() -> None:
-    parser = argparse.ArgumentParser()
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input-dir", required=True)
     parser.add_argument("--ks", type=int, nargs="+", default=[5, 10])
     parser.add_argument("--score-key", default="predicted_score")
-    parser.add_argument("--save-scored", default=None)
+    parser.add_argument("--save-scored", default=None, help="Optional copy of input rows")
+    parser.add_argument("--save-json", default=None, help="Optional metrics report")
     args = parser.parse_args()
-
-    rows = load_rows(args.input_dir)
-    print("loaded rows:", len(rows))
-
-    grouped = defaultdict(list)
-    for row in rows:
-        grouped[(row["source_file"], int(row["data_id"]))].append(row)
-
-    print("groups:", len(grouped))
-
-    metrics = []
-    for _, group in grouped.items():
-        ranked = sorted(group, key=lambda x: float(x[args.score_key]), reverse=True)
-        labels = [int(x["score"]) for x in ranked]
-        metrics.append(metrics_for_group(labels, args.ks))
-
-    keys = sorted(metrics[0].keys())
-    print("\n=== Ranking Metrics ===")
-    for key in keys:
-        print(f"{key}: {float(np.mean([m[key] for m in metrics])):.6f}")
-
-    if args.save_scored:
-        os.makedirs(os.path.dirname(args.save_scored), exist_ok=True)
-        with open(args.save_scored, "w", encoding="utf-8") as f:
-            json.dump(rows, f, ensure_ascii=False, indent=4)
-        print(f"\nsaved scored rows to: {args.save_scored}")
+    try:
+        rows = load_rows(args.input_dir)
+        metrics, count = ranking_metrics(rows, args.ks, args.score_key)
+        print("loaded rows:", len(rows))
+        print("groups:", count)
+        print("\n=== Ranking Metrics ===")
+        for key in sorted(metrics):
+            print(f"{key}: {metrics[key]:.6f}")
+        if args.save_scored:
+            save_json(args.save_scored, rows)
+        if args.save_json:
+            save_json(args.save_json, {
+                "schema_version": 1, "groups": count, "rows": len(rows),
+                "score_key": args.score_key, "ks": args.ks,
+                "tie_policy": "stable input order", "ndcg_gain": "linear",
+                "zero_positive_policy": "include as zero", "metrics": metrics,
+            })
+    except (OSError, ValueError) as exc:
+        parser.error(str(exc))
 
 
 if __name__ == "__main__":
