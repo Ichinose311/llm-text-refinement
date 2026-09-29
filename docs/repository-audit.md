@@ -4,7 +4,7 @@ Audit base: `1808be5` (the only commit in the public history at inspection).
 The repository was public and contained 244 tracked files: 86 Python files,
 110 JSON files, 27 TXT files, 10 Markdown files, 8 tokenizer models, one PNG,
 one PDF and .gitignore. No notebooks, shell scripts, tests or CI were tracked.
-Source code occupied 1,124,864 bytes; artifacts occupied 316,411,142 bytes.
+Source code occupied 1,124,864 bytes in the Windows checkout; Git artifact blobs occupied 298,002,408 bytes.
 
 ## Classification
 
@@ -29,8 +29,8 @@ original Python files to imports, definitions and selected path literals.
 Existing src/Tabidachi, src/ChatRec, root utilities, artifacts and images retain
 their locations. Added docs/, examples/, results/, tests/, scripts/, requirements/,
 data/README.md, .env.example and a CPU CI workflow. No original source file moved
-or disappeared. Thirty redundant artifact files were removed, saving 121,727,802
-bytes (about 116 MiB) from a checkout. Git history was not rewritten, so original
+or disappeared. Thirty redundant artifact files were removed, saving 113,925,569
+bytes (about 108.6 MiB) from a checkout. Git history was not rewritten, so original
 blobs remain recoverable and clone-history size is not reduced.
 
 ## Findings and changes
@@ -102,3 +102,8 @@ processing are not claimed tested. See the cleanup report / PR for final checks.
 - Confirm AIX/local backup and external path use before deleting unique artifact candidates.
 - Review corpus-derived text and third-party licenses before promoting the repository as a portfolio.
 - Implement and evaluate response generation; it remains a stated goal, not a completed feature.
+
+Artifact inventory sizes and SHA-256 values use Git blob bytes. For text files,
+normalize Windows CRLF to Git LF before verifying a working copy. The deletion
+check compared original and retained Git blobs directly; no content-only assumption
+was used to choose duplicates.

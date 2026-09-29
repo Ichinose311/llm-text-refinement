@@ -42,7 +42,9 @@ def main():
     manifest = json.loads((ROOT / "docs/removed-duplicates.json").read_text())
     for entry in manifest:
         kept = ROOT / entry["retained_copy"]
-        if not kept.is_file() or hashlib.sha256(kept.read_bytes()).hexdigest() != entry["sha256"]:
+        # Text blobs are stored with LF in Git; Windows checkout may use CRLF.
+        content = kept.read_bytes().replace(b"\r\n", b"\n") if kept.is_file() else None
+        if content is None or hashlib.sha256(content).hexdigest() != entry["sha256"]:
             errors.append(f"Missing or changed retained duplicate: {entry['retained_copy']}")
 
     for path in [ROOT / "requirements.txt", *(ROOT / "requirements").glob("*.txt")]:
