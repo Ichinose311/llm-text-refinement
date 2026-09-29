@@ -1,0 +1,19 @@
+# Direct dependencies for the legacy research scripts; not an exact run lock.
+# Python 3.10, Linux/CUDA for GPU training. Original freeze is preserved separately.
+torch==2.4.1
+transformers==4.46.2
+trl==0.12.1
+accelerate==1.0.1
+datasets==3.1.0
+peft==0.13.2
+numpy==1.26.4
+scipy==1.14.1
+pandas==2.2.3
+scikit-learn==1.5.2
+optuna==4.1.0
+safetensors==0.4.5
+sentencepiece==0.2.0
+protobuf==4.25.5
+tqdm==4.67.0
+wandb==0.19.6
+tensorboard==2.12.3
