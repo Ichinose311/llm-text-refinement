@@ -1,0 +1,182 @@
+[
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/checkpoint-169/adapter_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/adapter_config.json",
+    "bytes": 1164,
+    "sha256": "c254d961eecfc8cf70acb1f07780f83de415101d1486b627af747955a32102da"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/checkpoint-169/special_tokens_map.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/special_tokens_map.json",
+    "bytes": 352,
+    "sha256": "3910afdcd3fe7bd60c53e0bf6243747fb50fb680d83b4aad62aa1e0722675b66"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/checkpoint-169/tokenizer.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/tokenizer.json",
+    "bytes": 18460923,
+    "sha256": "acbb26b8d3121ebf65c2c9a09726d7ad0d16471b75d45cac92285d170bb4ae86"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/checkpoint-169/tokenizer_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files/tokenizer_config.json",
+    "bytes": 52596,
+    "sha256": "f5d021f5455f1190d380fdf4732853e205850c66d4ef81e0a92c59f712e5ee7f"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/checkpoint-167/adapter_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/adapter_config.json",
+    "bytes": 1164,
+    "sha256": "938973034248e6ce0e678ae41d254e86fe15fba98fa02dc20381e718a1f35514"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/checkpoint-167/special_tokens_map.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/special_tokens_map.json",
+    "bytes": 352,
+    "sha256": "3910afdcd3fe7bd60c53e0bf6243747fb50fb680d83b4aad62aa1e0722675b66"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/checkpoint-167/tokenizer.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/tokenizer.json",
+    "bytes": 18460923,
+    "sha256": "acbb26b8d3121ebf65c2c9a09726d7ad0d16471b75d45cac92285d170bb4ae86"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/checkpoint-167/tokenizer_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_50files_rule/tokenizer_config.json",
+    "bytes": 52596,
+    "sha256": "f5d021f5455f1190d380fdf4732853e205850c66d4ef81e0a92c59f712e5ee7f"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/checkpoint-25/adapter_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/adapter_config.json",
+    "bytes": 1164,
+    "sha256": "99e5961a4603030d379806a3c5921837b47f83ecc26e271dd878266bbb1c933b"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/checkpoint-25/special_tokens_map.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/special_tokens_map.json",
+    "bytes": 352,
+    "sha256": "3910afdcd3fe7bd60c53e0bf6243747fb50fb680d83b4aad62aa1e0722675b66"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/checkpoint-25/tokenizer.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/tokenizer.json",
+    "bytes": 18460923,
+    "sha256": "acbb26b8d3121ebf65c2c9a09726d7ad0d16471b75d45cac92285d170bb4ae86"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/checkpoint-25/tokenizer_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_5files/tokenizer_config.json",
+    "bytes": 52596,
+    "sha256": "f5d021f5455f1190d380fdf4732853e205850c66d4ef81e0a92c59f712e5ee7f"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/checkpoint-3/adapter_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/adapter_config.json",
+    "bytes": 1164,
+    "sha256": "42788f4bd4544c6ad3c79dd7060673391a2d4df55142b27101f51fc264ec3c65"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/checkpoint-3/special_tokens_map.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/special_tokens_map.json",
+    "bytes": 352,
+    "sha256": "3910afdcd3fe7bd60c53e0bf6243747fb50fb680d83b4aad62aa1e0722675b66"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/checkpoint-3/tokenizer.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/tokenizer.json",
+    "bytes": 18460923,
+    "sha256": "acbb26b8d3121ebf65c2c9a09726d7ad0d16471b75d45cac92285d170bb4ae86"
+  },
+  {
+    "path": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/checkpoint-3/tokenizer_config.json",
+    "retained_copy": "artifacts/dpo/recommendation/dpo_recommendation_results_reason_v16_test/tokenizer_config.json",
+    "bytes": 52596,
+    "sha256": "f5d021f5455f1190d380fdf4732853e205850c66d4ef81e0a92c59f712e5ee7f"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/checkpoint-29452/tokenizer.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/tokenizer.json",
+    "bytes": 6809028,
+    "sha256": "8fc1702a21cb97d1cb887d5bc8cf0c78ca34e49ed9b8e14afe9ed9a2e7d1d186"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/checkpoint-29452/tokenizer_config.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/tokenizer_config.json",
+    "bytes": 638,
+    "sha256": "45c867f234b2957ae0e0877ebe8c011f7822c9366364ef0973e83bbb6aebcdac"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/checkpoint-44178/tokenizer.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/tokenizer.json",
+    "bytes": 6809028,
+    "sha256": "8fc1702a21cb97d1cb887d5bc8cf0c78ca34e49ed9b8e14afe9ed9a2e7d1d186"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/checkpoint-44178/tokenizer_config.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24/tokenizer_config.json",
+    "bytes": 638,
+    "sha256": "45c867f234b2957ae0e0877ebe8c011f7822c9366364ef0973e83bbb6aebcdac"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24_test/checkpoint-40/tokenizer.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24_test/tokenizer.json",
+    "bytes": 6809028,
+    "sha256": "8fc1702a21cb97d1cb887d5bc8cf0c78ca34e49ed9b8e14afe9ed9a2e7d1d186"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24_test/checkpoint-40/tokenizer_config.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_4input_v16_existing_nonold24_test/tokenizer_config.json",
+    "bytes": 638,
+    "sha256": "45c867f234b2957ae0e0877ebe8c011f7822c9366364ef0973e83bbb6aebcdac"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_3input_v16_existing_nonold24_test/checkpoint-50/tokenizer.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_3input_v16_existing_nonold24_test/tokenizer.json",
+    "bytes": 6809028,
+    "sha256": "8fc1702a21cb97d1cb887d5bc8cf0c78ca34e49ed9b8e14afe9ed9a2e7d1d186"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_3input_v16_existing_nonold24_test/checkpoint-50/tokenizer_config.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_3input_v16_existing_nonold24_test/tokenizer_config.json",
+    "bytes": 638,
+    "sha256": "45c867f234b2957ae0e0877ebe8c011f7822c9366364ef0973e83bbb6aebcdac"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/checkpoint-14626/tokenizer.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/tokenizer.json",
+    "bytes": 6809028,
+    "sha256": "8fc1702a21cb97d1cb887d5bc8cf0c78ca34e49ed9b8e14afe9ed9a2e7d1d186"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/checkpoint-14626/tokenizer_config.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/tokenizer_config.json",
+    "bytes": 638,
+    "sha256": "45c867f234b2957ae0e0877ebe8c011f7822c9366364ef0973e83bbb6aebcdac"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/checkpoint-43878/tokenizer.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/tokenizer.json",
+    "bytes": 6809028,
+    "sha256": "8fc1702a21cb97d1cb887d5bc8cf0c78ca34e49ed9b8e14afe9ed9a2e7d1d186"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/checkpoint-43878/tokenizer_config.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24/tokenizer_config.json",
+    "bytes": 638,
+    "sha256": "45c867f234b2957ae0e0877ebe8c011f7822c9366364ef0973e83bbb6aebcdac"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24_test/checkpoint-50/tokenizer.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24_test/tokenizer.json",
+    "bytes": 6809028,
+    "sha256": "8fc1702a21cb97d1cb887d5bc8cf0c78ca34e49ed9b8e14afe9ed9a2e7d1d186"
+  },
+  {
+    "path": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24_test/checkpoint-50/tokenizer_config.json",
+    "retained_copy": "artifacts/models/modernbert/modernbert_pairwise_4input_v16_existing_nonold24_test/tokenizer_config.json",
+    "bytes": 638,
+    "sha256": "45c867f234b2957ae0e0877ebe8c011f7822c9366364ef0973e83bbb6aebcdac"
+  }
+]
